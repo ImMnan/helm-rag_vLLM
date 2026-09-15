@@ -77,6 +77,12 @@ spec:
         - name: RERANK_OVERFETCH_MULTIPLIER
           value: "2"          
         {{- end }}
+        - name: QDRANT_MMR_ENABLED
+          value: "true"
+        - name: QDRANT_MMR_LAMBDA
+          value: "0.7"
+        - name: QDRANT_MMR_OVERFETCH
+          value: "3"        
         volumeMounts:
         - name: app-profiles
           mountPath: /etc/app-prof
