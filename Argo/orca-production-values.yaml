@@ -30,7 +30,7 @@ images:
   embedding: 
     image: immnan/gte-embed-py
     pullPolicy: IfNotPresent
-    tag: "0.3.1"
+    tag: "0.3.2"
   mini_ui: 
     image: immnan/mini-ui
     pullPolicy: IfNotPresent
