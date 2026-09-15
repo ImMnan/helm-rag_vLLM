@@ -26,11 +26,11 @@ images:
   orca: 
     image: immnan/orca-rag
     pullPolicy: IfNotPresent
-    tag: "0.3.6"
+    tag: "0.3.7"
   embedding: 
     image: immnan/gte-embed-py
     pullPolicy: IfNotPresent
-    tag: "0.3.0"
+    tag: "0.3.1"
   mini_ui: 
     image: immnan/mini-ui
     pullPolicy: IfNotPresent
