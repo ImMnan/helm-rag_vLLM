@@ -100,14 +100,14 @@ resources:
   embedding: 
     requests:
       cpu: "500m"
-      memory: 4Gi
+      memory: 6Gi
     limits:
-      cpu: "1"
-      memory: 8Gi  
+      cpu: "2"
+      memory: 14Gi  
   vllm: 
     requests:
       cpu: "1"
-      memory: "8Gi"
+      memory: "Gi"
       nvidia.com/gpu: "1"  
     limits:
       cpu: "2"
