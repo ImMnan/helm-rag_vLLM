@@ -5,7 +5,7 @@ main:
     name: gte-1.5 #e5-large
     re_rank: true  
     re_rank_overfetch: 2
-
+    gpu: true
   vllm: 
     inference_model: Qwen/Qwen2.5-7B-Instruct
     runCmd: |-

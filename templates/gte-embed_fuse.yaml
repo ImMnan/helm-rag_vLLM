@@ -123,10 +123,8 @@ spec:
           value: "{text}"
         - name: EMBED_DOCUMENT_TEMPLATE
           value: "{text}"
-      {{- if eq .Values.embedding.requests.nvidia.com/gpu "1" }}
-        - name: EMBED_DEVICE
-          value: "cuda"
-      {{- end }}
+
+  
         # Cross-encoder reranker, resolved from the same model-cache PVC as the embed model.
         {{- if .Values.main.embedding.re_rank }}
         - name: RERANKER_MODEL
@@ -135,6 +133,10 @@ spec:
         # writable module cache, so redirect it to the writable /tmp emptyDir.
         - name: HF_MODULES_CACHE
           value: "/tmp/hf_modules"        
+        {{- end }}
+        {{- if .Values.main.embedding.gpu }}
+        - name: EMBED_DEVICE
+          value: "cuda"
         {{- end }}
         volumeMounts:
         - name: tmp
