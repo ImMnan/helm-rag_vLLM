@@ -127,6 +127,10 @@ spec:
         {{- if .Values.main.embedding.re_rank }}
         - name: RERANKER_MODEL
           value: "Alibaba-NLP/gte-multilingual-reranker-base"
+        # HF_HOME is read-only (model-cache PVC); dynamic modules (trust_remote_code) need a
+        # writable module cache, so redirect it to the writable /tmp emptyDir.
+        - name: HF_MODULES_CACHE
+          value: "/tmp/hf_modules"        
         {{- end }}
         volumeMounts:
         - name: tmp
