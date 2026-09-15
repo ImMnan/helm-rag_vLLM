@@ -136,9 +136,7 @@ spec:
         {{- end }}
         {{- if .Values.main.embedding.gpu }}
         - name: EMBED_DEVICE
-          value: "cuda"
-        - name: TRANSFORMERS_CACHE
-          value: "/tmp/transformers"          
+          value: "cuda"        
         {{- end }}
         volumeMounts:
         - name: tmp
