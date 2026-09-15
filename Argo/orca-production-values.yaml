@@ -3,7 +3,8 @@
 main: 
   embedding: 
     name: gte-1.5 #e5-large
-    re_rank: false    
+    re_rank: true  
+    re_rank_overfetch: 2
 
   vllm: 
     inference_model: Qwen/Qwen2.5-7B-Instruct
@@ -15,16 +16,21 @@ main:
       --enable-prefix-caching
     
   vectorDB: qdrant #default: qdrant
-  
+  orca: 
+    context_truncation: false
+    mmr: true
+    mmr_overfetch: 3
+    mmr_lambda: 0.7
+
 images:
   orca: 
     image: immnan/orca-rag
     pullPolicy: IfNotPresent
-    tag: "0.3.4"
+    tag: "0.3.6"
   embedding: 
     image: immnan/gte-embed-py
     pullPolicy: IfNotPresent
-    tag: "0.2.0"
+    tag: "0.3.0"
   mini_ui: 
     image: immnan/mini-ui
     pullPolicy: IfNotPresent
@@ -101,9 +107,11 @@ resources:
     requests:
       cpu: "1"
       memory: 8Gi
+      nvidia.com/gpu: "1"
     limits:
-      cpu: "4"
-      memory: 16Gi  
+      cpu: "2"
+      memory: 16Gi 
+      nvidia.com/gpu: "1" 
   vllm: 
     requests:
       cpu: "1"
@@ -132,7 +140,10 @@ nodeSelector:
 
 tolerations: 
   orca: []
-  embedding: []
+  embedding:
+  - key: "nvidia.com/gpu"
+    operator: "Exists"
+    effect: "NoSchedule"    
   vllm:
   - key: "nvidia.com/gpu"
     operator: "Exists"

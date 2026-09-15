@@ -71,18 +71,22 @@ spec:
           value: "120s"
         - name: APP_PROFILE_DIR
           value: "/etc/app-prof"
-        {{- if .Values.main.embedding.re_rank }}  
+      {{ with .Values.main }}
+        {{- if .embedding.re_rank }}  
         - name: RERANK_ENABLED
-          value: "true"
+          value: {{ .embedding.re_rank | quote }}
         - name: RERANK_OVERFETCH_MULTIPLIER
-          value: "2"          
+          value: {{ .embedding.re_rank_overfetch | quote }}       
         {{- end }}
         - name: QDRANT_MMR_ENABLED
-          value: "true"
+          value: {{ .orca.mmr | quote }}
         - name: QDRANT_MMR_LAMBDA
-          value: "0.7"
+          value: {{ .orca.mmr_lambda | quote }}
         - name: QDRANT_MMR_OVERFETCH
-          value: "3"        
+          value: {{ .orca.mmr_overfetch | quote }}     
+        - name: CONTEXT_TRUNCATION_ENABLED
+          value: {{ .orca.context_truncation | quote }}
+      {{- end }}  
         volumeMounts:
         - name: app-profiles
           mountPath: /etc/app-prof

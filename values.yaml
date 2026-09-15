@@ -3,7 +3,7 @@
 main: 
   embedding: 
     name: gte-1.5 #e5-large
-    re_rank: yes
+    re_rank: true
 
   vllm: 
     inference_model: Qwen/Qwen2.5-7B-Instruct
