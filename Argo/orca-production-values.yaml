@@ -100,7 +100,7 @@ resources:
   embedding: 
     requests:
       cpu: "500m"
-      memory: 89Gi
+      memory: 8Gi
     limits:
       cpu: "2"
       memory: 16Gi  
