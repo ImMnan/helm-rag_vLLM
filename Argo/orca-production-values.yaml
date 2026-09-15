@@ -99,10 +99,10 @@ resources:
       memory: 4Gi
   embedding: 
     requests:
-      cpu: "500m"
+      cpu: "1"
       memory: 8Gi
     limits:
-      cpu: "2"
+      cpu: "4"
       memory: 16Gi  
   vllm: 
     requests:

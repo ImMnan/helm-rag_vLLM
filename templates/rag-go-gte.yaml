@@ -75,7 +75,7 @@ spec:
         - name: RERANK_ENABLED
           value: "true"
         - name: RERANK_OVERFETCH_MULTIPLIER
-          value: "4"          
+          value: "2"          
         {{- end }}
         volumeMounts:
         - name: app-profiles
