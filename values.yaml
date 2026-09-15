@@ -3,6 +3,7 @@
 main: 
   embedding: 
     name: gte-1.5 #e5-large
+    re_rank: yes
 
   vllm: 
     inference_model: Qwen/Qwen2.5-7B-Instruct
@@ -17,17 +18,17 @@ main:
   
 images:
   orca: 
-    image: immnan/rag-go
+    image: immnan/orca-rag
     pullPolicy: IfNotPresent
-    tag: "0.8.1"
+    tag: "0.2.0"
   embedding: 
     image: immnan/gte-embed-py
     pullPolicy: IfNotPresent
-    tag: "0.1.0"
+    tag: "0.2.0"
   mini_ui: 
     image: immnan/mini-ui
     pullPolicy: IfNotPresent
-    tag: "0.1.4"
+    tag: "0.1.11"
   vllm:
     image: vllm/vllm-openai
     pullPolicy: IfNotPresent

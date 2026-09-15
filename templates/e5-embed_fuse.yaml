@@ -57,6 +57,11 @@ spec:
         - containerPort: {{ (index .Values.services.embedding.ports 0).targetPort }}
           name: embed-http
         env:
+        - name: HF_TOKEN
+          valueFrom:
+            secretKeyRef:
+              name: hf-token-secret
+              key: token        
         - name: EMBED_MODEL
           value: "intfloat/multilingual-e5-large"
         - name: HF_HOME

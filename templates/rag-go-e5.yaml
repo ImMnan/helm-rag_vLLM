@@ -68,6 +68,12 @@ spec:
           value: "180s"
         - name: EMBED_TIMEOUT
           value: "60s"
+        {{- if .Values.main.embedding.re_rank }}  
+        - name: RERANK_ENABLED
+          value: "true"
+        - name: RERANK_OVERFETCH_MULTIPLIER
+          value: "4"          
+        {{- end }}          
         volumeMounts:
         - name: tmp
           mountPath: /tmp

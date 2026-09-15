@@ -71,6 +71,12 @@ spec:
           value: "120s"
         - name: APP_PROFILE_DIR
           value: "/etc/app-prof"
+        {{- if .Values.main.embedding.re_rank }}  
+        - name: RERANK_ENABLED
+          value: "true"
+        - name: RERANK_OVERFETCH_MULTIPLIER
+          value: "4"          
+        {{- end }}
         volumeMounts:
         - name: app-profiles
           mountPath: /etc/app-prof
