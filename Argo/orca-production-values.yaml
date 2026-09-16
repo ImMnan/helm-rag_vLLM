@@ -14,8 +14,6 @@ main:
       --port 8000
       --tensor-parallel-size 1
       --enable-prefix-caching 
-      --enable-chunked-prefill
-      --max-num-batched-tokens 2048
     
   vectorDB: qdrant #default: qdrant
   orca: 
