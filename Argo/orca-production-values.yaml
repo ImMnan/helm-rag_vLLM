@@ -17,7 +17,7 @@ main:
     
   vectorDB: qdrant #default: qdrant
   orca: 
-    context_truncation: false
+    context_truncation: true
     mmr: true
     mmr_overfetch: 3
     mmr_lambda: 0.7
