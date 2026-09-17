@@ -3,9 +3,9 @@
 main: 
   embedding: 
     name: gte-1.5 #e5-large
-    re_rank: false  
-    re_rank_overfetch: 2
-    gpu: false
+    re_rank: true
+    re_rank_overfetch: 3
+    gpu: true
   vllm: 
     inference_model: Qwen/Qwen2.5-7B-Instruct
     runCmd: |-
@@ -19,7 +19,7 @@ main:
   orca: 
     context_truncation: true
     mmr: true
-    mmr_overfetch: 2
+    mmr_overfetch: 3
     mmr_lambda: 0.7
 
 images:
@@ -30,7 +30,7 @@ images:
   embedding: 
     image: immnan/gte-embed-py
     pullPolicy: IfNotPresent
-    tag: "0.3.0"
+    tag: "0.3.5"
   mini_ui: 
     image: immnan/mini-ui
     pullPolicy: IfNotPresent
@@ -107,11 +107,11 @@ resources:
     requests:
       cpu: "1"
       memory: 8Gi
-      #nvidia.com/gpu: "1"  
+      nvidia.com/gpu: "1"  
     limits:
       cpu: "2"
       memory: 16Gi 
-      #nvidia.com/gpu: "1"  
+      nvidia.com/gpu: "1"  
   vllm: 
     requests:
       cpu: "1"
