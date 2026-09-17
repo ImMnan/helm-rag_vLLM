@@ -78,6 +78,8 @@ spec:
         - name: RERANK_OVERFETCH_MULTIPLIER
           value: {{ .embedding.re_rank_overfetch | quote }}       
         {{- end }}
+        - name: QDRANT_SCORE_THRESHOLD
+          value: {{ .orca.score_threshold | quote | default "0" }}
         - name: QDRANT_MMR_ENABLED
           value: {{ .orca.mmr | quote }}
         - name: QDRANT_MMR_LAMBDA
