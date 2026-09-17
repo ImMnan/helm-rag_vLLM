@@ -19,9 +19,9 @@ main:
   orca: 
     context_truncation: true
     mmr: true
-    mmr_overfetch: 3
+    mmr_overfetch: 2
     mmr_lambda: 0.7
-    score_threshold: 0.20
+    score_threshold: 0.25
 
 images:
   orca: 
