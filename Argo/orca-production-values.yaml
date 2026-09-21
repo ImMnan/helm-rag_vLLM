@@ -27,7 +27,7 @@ images:
   orca: 
     image: immnan/orca-rag
     pullPolicy: IfNotPresent
-    tag: "0.4.4"
+    tag: "0.4.5"
   embedding: 
     image: immnan/gte-embed-py
     pullPolicy: IfNotPresent
