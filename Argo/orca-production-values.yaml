@@ -27,7 +27,7 @@ images:
   orca: 
     image: immnan/orca-rag
     pullPolicy: IfNotPresent
-    tag: "0.4.5"
+    tag: "0.4.6"
   embedding: 
     image: immnan/gte-embed-py
     pullPolicy: IfNotPresent
@@ -35,7 +35,7 @@ images:
   mini_ui: 
     image: immnan/mini-ui
     pullPolicy: IfNotPresent
-    tag: "0.2.1"
+    tag: "0.3.0"
   vllm:
     image: vllm/vllm-openai
     pullPolicy: IfNotPresent
