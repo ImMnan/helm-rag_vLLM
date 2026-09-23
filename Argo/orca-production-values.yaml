@@ -21,7 +21,7 @@ main:
     mmr: true
     mmr_overfetch: 2
     mmr_lambda: 0.7
-    score_threshold: 0.25
+    score_threshold: 0.30
 
 images:
   orca: 
