@@ -81,13 +81,18 @@ spec:
         - name: QDRANT_SCORE_THRESHOLD
           value: {{ .orca.score_threshold | quote | default "0" }}
         - name: QDRANT_MMR_ENABLED
-          value: {{ .orca.mmr | quote }}
+          value: {{ .orca.mmr | quote | default true }}
         - name: QDRANT_MMR_LAMBDA
-          value: {{ .orca.mmr_lambda | quote }}
+          value: {{ .orca.mmr_lambda | quote | default "0.7" }}
         - name: QDRANT_MMR_OVERFETCH
-          value: {{ .orca.mmr_overfetch | quote }}     
+          value: {{ .orca.mmr_overfetch | quote | default "2" }}     
         - name: CONTEXT_TRUNCATION_ENABLED
-          value: {{ .orca.context_truncation | quote }}
+          value: {{ .orca.context_truncation | quote | default true }}
+        # Dense+sparse (BM25) RRF retrieval; requires the embed service's /sparse endpoint.
+        - name: QDRANT_HYBRID_ENABLED
+          value: {{ .orca.hybrid_enabled | quote | default true }}
+        - name: QDRANT_HYBRID_PREFETCH_MULTIPLIER
+          value: {{ .orca.hybrid_prefetch_multiplier | quote | default "2" }}  
       {{- end }}  
         volumeMounts:
         - name: app-profiles
