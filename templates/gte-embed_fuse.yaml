@@ -130,9 +130,7 @@ spec:
         - name: EMBED_QUERY_TEMPLATE
           value: "{text}"
         - name: EMBED_DOCUMENT_TEMPLATE
-          value: "{text}"
-
-  
+          value: "{text}"  
         # Cross-encoder reranker, resolved from the same model-cache PVC as the embed model.
         {{- if .Values.main.embedding.re_rank }}
         - name: RERANKER_MODEL
