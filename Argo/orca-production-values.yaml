@@ -24,12 +24,13 @@ main:
     score_threshold: 0.30
     hybrid_enabled: true
     hybrid_prefetch_multiplier: 2
+    max_call_recv_msg_kb: 
 
 images:
   orca: 
     image: immnan/orca-rag
     pullPolicy: IfNotPresent
-    tag: "0.5.2"
+    tag: "0.5.6"
   embedding: 
     image: immnan/gte-embed-py
     pullPolicy: IfNotPresent

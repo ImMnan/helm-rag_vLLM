@@ -17,6 +17,10 @@ spec:
       {{- with .Values.labels.orca }}
       {{- toYaml . | nindent 6 }}
       {{- end }}
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 1      
   template:
     metadata:
       labels:
@@ -93,6 +97,8 @@ spec:
           value: {{ .orca.hybrid_enabled | quote | default true }}
         - name: QDRANT_HYBRID_PREFETCH_MULTIPLIER
           value: {{ .orca.hybrid_prefetch_multiplier | quote | default "2" }}  
+        - name: QDRANT_MAX_CALL_RECV_MSG_KB
+          value: {{ .orca.max_call_recv_msg_kb | quote | default "8192" }}
       {{- end }}  
         volumeMounts:
         - name: app-profiles
