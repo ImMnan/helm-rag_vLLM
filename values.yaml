@@ -24,20 +24,21 @@ main:
     score_threshold: 0.30
     hybrid_enabled: true
     hybrid_prefetch_multiplier: 2
+    max_call_recv_msg_kb: 
 
 images:
   orca: 
     image: immnan/orca-rag
     pullPolicy: IfNotPresent
-    tag: "0.4.6"
+    tag: "0.5.6"
   embedding: 
     image: immnan/gte-embed-py
     pullPolicy: IfNotPresent
-    tag: "0.3.5"
+    tag: "0.4.0"
   mini_ui: 
     image: immnan/mini-ui
     pullPolicy: IfNotPresent
-    tag: "0.3.0"
+    tag: "0.3.1"
   vllm:
     image: vllm/vllm-openai
     pullPolicy: IfNotPresent
