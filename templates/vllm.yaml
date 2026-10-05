@@ -16,6 +16,10 @@ spec:
       {{- with .Values.labels.vllm }}
       {{- toYaml . | nindent 6 }}
       {{- end }}
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 1         
   template:
     metadata:
       labels:

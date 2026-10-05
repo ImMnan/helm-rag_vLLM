@@ -18,6 +18,10 @@ spec:
       {{- toYaml . | nindent 6 }}
       {{- end }}
       tag: {{ .Chart.Version }}-{{ .Release.Name }}
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 1         
   template:
     metadata:
       labels:
