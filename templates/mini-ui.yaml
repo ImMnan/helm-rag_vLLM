@@ -37,6 +37,12 @@ spec:
           value: {{ .Release.Name }}-{{ .Values.services.orca.name }}
         - name: PORT
           value: {{ index .Values.services.mini_ui.ports 0 "targetPort" | quote }}
+        - name: VITE_KEYCLOAK_URL
+          value: "kc-keycloakx-http" 
+        - name: VITE_KEYCLOAK_REALM
+          value: "orca"
+        - name: VITE_KEYCLOAK_CLIENT_ID
+          value: "mini-ui"
         ports:
         - containerPort: {{ index .Values.services.mini_ui.ports 0 "targetPort" }}
           name: {{ index .Values.services.mini_ui.ports 0 "name" }}

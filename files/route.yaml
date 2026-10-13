@@ -36,3 +36,16 @@ spec:
       backendRefs:
         - name: prod-mini-ui-svc
           port: 80
+    - matches:
+        - path:
+            type: PathPrefix
+            value: /auth
+      backendRefs:
+        - name: kc-keycloakx-http   # ⬅️ Matches the active running service name
+          port: 80
+      filters:
+        - type: URLRewrite
+          urlRewrite:
+            path:
+              type: ReplacePrefixMatch
+              replacePrefixMatch: /          
