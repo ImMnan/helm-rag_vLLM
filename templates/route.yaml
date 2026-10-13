@@ -42,13 +42,7 @@ spec:
             value: /auth
       backendRefs:
         - name: kc-keycloakx-http   # ⬅️ Matches the active running service name
-          port: 80
-      filters:
-        - type: URLRewrite
-          urlRewrite:
-            path:
-              type: ReplacePrefixMatch
-              replacePrefixMatch: /             
+          port: 80          
           
 ---
 apiVersion: gateway.networking.k8s.io/v1
