@@ -38,7 +38,7 @@ spec:
         - name: PORT
           value: {{ index .Values.services.mini_ui.ports 0 "targetPort" | quote }}
         - name: VITE_KEYCLOAK_URL
-          value: "kc-keycloakx-http" 
+          value: "https://orca-infer.ai/auth" 
         - name: VITE_KEYCLOAK_REALM
           value: "orca"
         - name: VITE_KEYCLOAK_CLIENT_ID
