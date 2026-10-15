@@ -9,26 +9,13 @@ spec:
   hostnames:
     - orca-infer.ai
   rules:
-    - matches:
-        - path:
-            type: PathPrefix
-            value: /api/v1/rag-go
-      backendRefs:
-        - name: {{ .Release.Name }}-{{ .Values.services.orca.name }}
-          port: {{ (index .Values.services.orca.ports 0).port }}
-    - matches: 
-        - path: 
-            type: PathPrefix
-            value: /q1
-      filters:
-        - type: URLRewrite
-          urlRewrite:
-            path:
-              type: ReplacePrefixMatch
-              replacePrefixMatch: /
-      backendRefs:
-        - name: qdrant-service
-          port: 6333
+#    - matches:
+#        - path:
+#            type: PathPrefix
+#            value: /api/v1/rag-go
+#      backendRefs:
+#        - name: {{ .Release.Name }}-{{ .Values.services.orca.name }}
+#          port: {{ (index .Values.services.orca.ports 0).port }}
     - matches:
         - path: 
             type: PathPrefix
@@ -43,7 +30,6 @@ spec:
       backendRefs:
         - name: kc-keycloakx-http   # ⬅️ Matches the active running service name
           port: 80          
-          
 ---
 apiVersion: gateway.networking.k8s.io/v1
 kind: GRPCRoute
@@ -60,3 +46,24 @@ spec:
     - backendRefs:
         - name: qdrant-service
           port: 6334
+
+---
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+  name: orca-test-ui
+  namespace: hawk
+spec:
+  parentRefs:
+    - name: orca-infer-gateway
+      sectionName: test-https
+  hostnames:
+    - test.orca-infer.ai
+  rules:
+    - matches:
+        - path:
+            type: PathPrefix
+            value: /ui
+      backendRefs:
+        - name: test-mini-ui-svc
+          port: 80

@@ -39,6 +39,7 @@ images:
     image: immnan/mini-ui
     pullPolicy: IfNotPresent
     tag: "0.5.3"
+    test_tag: "0.5.3"
   vllm:
     image: vllm/vllm-openai
     pullPolicy: IfNotPresent

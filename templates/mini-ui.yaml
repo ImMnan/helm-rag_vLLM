@@ -50,3 +50,63 @@ spec:
         resources:
           {{ toYaml . | nindent 10 }}
         {{ end }}
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}-test-mini-ui
+  namespace: {{ .Release.Namespace }}
+  labels:
+    tag: {{ .Chart.Version }}-{{ .Release.Name }}
+    {{- with .Values.labels.mini_ui }}
+    {{- toYaml . | nindent 4 }}
+    {{- end }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      tag: {{ .Chart.Version }}-{{ .Release.Name }}
+      {{- with .Values.labels.mini_ui }}
+      {{- toYaml . | nindent 6 }}
+      env: test
+      {{- end }}
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 1         
+  template:
+    metadata:
+      labels:
+        tag: {{ .Chart.Version }}-{{ .Release.Name }}
+        {{- with .Values.labels.mini_ui }}
+        {{- toYaml . | nindent 8 }}
+        env: test
+        {{- end }}
+    spec:
+      containers:
+      - image: {{ .Values.images.mini_ui.image }}:{{ .Values.images.mini_ui.test_tag }}
+        imagePullPolicy: {{ .Values.images.mini_ui.pullPolicy }}
+        name: mini-ui
+        env: 
+        - name: RAG_BASE_URL
+          value: {{ .Release.Name }}-{{ .Values.services.orca.name }}
+        - name: PORT
+          value: {{ index .Values.services.mini_ui.ports 0 "targetPort" | quote }}
+        - name: VITE_KEYCLOAK_URL
+          value: "https://orca-infer.ai/auth" 
+        - name: VITE_KEYCLOAK_REALM
+          value: "orca"
+        - name: VITE_KEYCLOAK_CLIENT_ID
+          value: "orca-client"
+        ports:
+        - containerPort: {{ index .Values.services.mini_ui.ports 0 "targetPort" }}
+          name: {{ index .Values.services.mini_ui.ports 0 "name" }}
+        {{ with .Values.resources.mini_ui }}
+        resources:
+          requests:
+            cpu: "50m"
+            memory: "128Mi"
+          limits:
+            cpu: "100m"
+            memory: "250Mi"        
+        {{ end }}
