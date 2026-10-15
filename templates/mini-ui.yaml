@@ -7,6 +7,7 @@ metadata:
     tag: {{ .Chart.Version }}-{{ .Release.Name }}
     {{- with .Values.labels.mini_ui }}
     {{- toYaml . | nindent 4 }}
+    env: prod
     {{- end }}
 spec:
   replicas: 1
@@ -15,6 +16,7 @@ spec:
       tag: {{ .Chart.Version }}-{{ .Release.Name }}
       {{- with .Values.labels.mini_ui }}
       {{- toYaml . | nindent 6 }}
+      env: prod
       {{- end }}
   strategy:
     type: RollingUpdate
@@ -26,6 +28,7 @@ spec:
         tag: {{ .Chart.Version }}-{{ .Release.Name }}
         {{- with .Values.labels.mini_ui }}
         {{- toYaml . | nindent 8 }}
+        env: prod
         {{- end }}
     spec:
       containers:
