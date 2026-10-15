@@ -12,11 +12,11 @@ spec:
   replicas: 1
   selector:
     matchLabels:
+      env: prod
       tag: {{ .Chart.Version }}-{{ .Release.Name }}
       {{- with .Values.labels.mini_ui }}
       {{- toYaml . | nindent 6 }}
       {{- end }}
-      env: prod
   strategy:
     type: RollingUpdate
     rollingUpdate:
@@ -24,11 +24,11 @@ spec:
   template:
     metadata:
       labels:
+        env: prod
         tag: {{ .Chart.Version }}-{{ .Release.Name }}
         {{- with .Values.labels.mini_ui }}
         {{- toYaml . | nindent 8 }}
         {{- end }}
-        env: prod
     spec:
       containers:
       - image: {{ .Values.images.mini_ui.image }}:{{ .Values.images.mini_ui.tag }}
