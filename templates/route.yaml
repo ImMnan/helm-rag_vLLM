@@ -22,14 +22,7 @@ spec:
             value: /ui
       backendRefs:
         - name: {{ .Release.Name }}-{{ .Values.services.mini_ui.name }}
-          port: {{ (index .Values.services.mini_ui.ports 0).port }}
-    - matches:
-        - path:
-            type: PathPrefix
-            value: /auth
-      backendRefs:
-        - name: kc-keycloakx-http   # ⬅️ Matches the active running service name
-          port: 80          
+          port: {{ (index .Values.services.mini_ui.ports 0).port }}       
 ---
 apiVersion: gateway.networking.k8s.io/v1
 kind: GRPCRoute
