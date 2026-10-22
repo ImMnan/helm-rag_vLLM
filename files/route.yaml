@@ -1,7 +1,7 @@
 apiVersion: gateway.networking.k8s.io/v1
 kind: HTTPRoute
 metadata:
-  name: default-http-route
+  name: def-http-route
   namespace: hawk
 spec:
   parentRefs:
@@ -9,8 +9,8 @@ spec:
   hostnames:
     - orca-infer.ai
   rules:
-    - matches: 
-        - path: 
+    - matches:
+        - path:
             type: PathPrefix
             value: /q1
       filters:
@@ -27,11 +27,5 @@ spec:
             type: PathPrefix
             value: /auth
       backendRefs:
-        - name: kc-keycloakx-http   # ⬅️ Matches the active running service name
+        - name: kc-keycloakx-http
           port: 80
-      filters:
-        - type: URLRewrite
-          urlRewrite:
-            path:
-              type: ReplacePrefixMatch
-              replacePrefixMatch: /
