@@ -61,7 +61,7 @@ spec:
             port: 8080             
         volumeMounts:
         - name: feedback-volume
-          mountPath: /mnt
+          mountPath: /mnt/feedback
       volumes:
         - name: feedback-volume
           csi:
