@@ -27,7 +27,7 @@ spec:
         - name: LOG_VERBOSE
           value: "true"
         - name: FEEDBACK_OUTPUT_DIR
-          value: /mnt/feedback
+          value: /mnt
         resources:
          limits:
            cpu: "250"
