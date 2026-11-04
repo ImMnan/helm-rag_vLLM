@@ -12,7 +12,6 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      tag: {{ .Chart.Version }}-{{ .Release.Name }}
       {{- with .Values.labels.mini_ui }}
       {{- toYaml . | nindent 6 }}
       {{- end }}
@@ -23,7 +22,6 @@ spec:
   template:
     metadata:
       labels:
-        tag: {{ .Chart.Version }}-{{ .Release.Name }}
         {{- with .Values.labels.mini_ui }}
         {{- toYaml . | nindent 8 }}
         {{- end }}
