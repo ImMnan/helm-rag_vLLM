@@ -59,7 +59,6 @@ spec:
   # The label selector should match the deployment labels & it is useful for prefix caching feature
   selector:
     {{- toYaml .Values.labels.mini_ui | nindent 4 }}
-    tag: {{ .Chart.Version }}-{{ .Release.Name }}
   sessionAffinity: None
   type: {{ .Values.services.mini_ui.type }}
 ---
