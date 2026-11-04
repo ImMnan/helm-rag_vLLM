@@ -6,6 +6,34 @@ metadata:
 spec:
   selfSigned: {}
 ---
+# Long-lived self-signed CA. Trust this once on clients; leaf rotations stay trusted.
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: orca-infer-ca
+  namespace: hawk
+spec:
+  isCA: true
+  commonName: orca-infer-ca
+  secretName: orca-infer-ca
+  duration: 87600h # 10y
+  renewBefore: 8760h
+  privateKey:
+    algorithm: ECDSA
+    size: 256
+  issuerRef:
+    name: selfsigned-issuer
+    kind: Issuer
+---
+apiVersion: cert-manager.io/v1
+kind: Issuer
+metadata:
+  name: orca-infer-ca-issuer
+  namespace: hawk
+spec:
+  ca:
+    secretName: orca-infer-ca
+---
 apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
@@ -14,7 +42,7 @@ metadata:
 spec:
   secretName: orca-infer-tls
   issuerRef:
-    name: selfsigned-issuer
+    name: orca-infer-ca-issuer
     kind: Issuer
   dnsNames:
     - orca-infer.ai
