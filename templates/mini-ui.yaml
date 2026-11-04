@@ -42,9 +42,11 @@ spec:
         - name: VITE_KEYCLOAK_CLIENT_ID
           value: "orca-client"
         - name: FEEDBACK_BASE_URL
-          value: {{ .Release.Name }}-{{ .Values.services.feedback.name }}
+          value: "http://{{ .Release.Name }}-{{ .Values.services.feedback.name }}"
         - name: KEYCLOAK_AUDIENCE
           value: orca-feedback
+        - name: KEYCLOAK_ISSUER
+          value: "https://orca-infer.ai/auth/realms/orca"
         ports:
         - containerPort: {{ index .Values.services.mini_ui.ports 0 "targetPort" }}
           name: {{ index .Values.services.mini_ui.ports 0 "name" }}
