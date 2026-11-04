@@ -12,7 +12,6 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      env: prod
       tag: {{ .Chart.Version }}-{{ .Release.Name }}
       {{- with .Values.labels.mini_ui }}
       {{- toYaml . | nindent 6 }}
@@ -24,7 +23,6 @@ spec:
   template:
     metadata:
       labels:
-        env: prod
         tag: {{ .Chart.Version }}-{{ .Release.Name }}
         {{- with .Values.labels.mini_ui }}
         {{- toYaml . | nindent 8 }}
@@ -45,6 +43,8 @@ spec:
           value: "orca"
         - name: VITE_KEYCLOAK_CLIENT_ID
           value: "orca-client"
+        - name: FEEDBACK_BASE_URL
+          value: {{ .Release.Name }}-{{ .Values.services.feedback.name }}
         ports:
         - containerPort: {{ index .Values.services.mini_ui.ports 0 "targetPort" }}
           name: {{ index .Values.services.mini_ui.ports 0 "name" }}

@@ -2,17 +2,27 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    app: orca-feedback
-  name: orca-feedback
+    tag: {{ .Chart.Version }}-{{ .Release.Name }}
+    {{- with .Values.labels.feedback }}
+    {{- toYaml . | nindent 4 }}
+    {{- end }}
+  name: {{ .Release.Name }}-feedback
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: orca-feedback
+      tag: {{ .Chart.Version }}-{{ .Release.Name }}
+      {{- with .Values.labels.feedback }}
+      {{- toYaml . | nindent 6 }}
+      {{- end }}      
+      
   template:
     metadata:
       labels:
-        app: orca-feedback
+        tag: {{ .Chart.Version }}-{{ .Release.Name }}
+        {{- with .Values.labels.feedback }}
+        {{- toYaml . | nindent 8 }}
+        {{- end }}
       annotations:
         gke-gcsfuse/volumes: "true"
     spec:
@@ -30,7 +40,7 @@ spec:
           value: /mnt
         resources:
          limits:
-           cpu: "250"
+           cpu: "250m"
            memory: "1Gi"
          requests:
            cpu: "150m"
@@ -44,7 +54,11 @@ spec:
             drop:
               - ALL
           seccompProfile:
-            type: RuntimeDefault    
+            type: RuntimeDefault   
+        livenessProbe:
+          httpGet:
+            path: /healthz
+            port: 8080             
         volumeMounts:
         - name: feedback-volume
           mountPath: /mnt

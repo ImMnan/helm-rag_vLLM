@@ -87,7 +87,10 @@ labels:
   embedding:
     app: gte-embed 
     type: embedding-model    
-
+  
+  feedback: 
+    app: feedback
+    type: feedback-service
 
 
 podSecurityContext:
@@ -191,4 +194,12 @@ services:
     ports: 
     - port: 80
       targetPort: 3000
+      name: http
+
+  feedback: 
+    name: feedback-svc
+    type: ClusterIP
+    ports: 
+    - port: 80
+      targetPort: 8080
       name: http
