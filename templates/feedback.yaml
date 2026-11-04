@@ -37,7 +37,7 @@ spec:
         - name: LOG_VERBOSE
           value: "true"
         - name: FEEDBACK_OUTPUT_DIR
-          value: /mnt
+          value: /mnt/feedback
         resources:
          limits:
            cpu: "250m"
@@ -68,4 +68,4 @@ spec:
             driver: gcsfuse.csi.storage.gke.io
             volumeAttributes:
               bucketName: rag-model-weights-hawk
-              mountOptions: "implicit-dirs,only-dir=feedback"
+              mountOptions: "implicit-dirs,only-dir=feedback,,uid=2000,gid=2000,dir-mode=0700,file-mode=0600"
