@@ -57,7 +57,7 @@ spec:
             type: RuntimeDefault   
         livenessProbe:
           httpGet:
-            path: /healthz
+            path: /health
             port: 8080             
         volumeMounts:
         - name: feedback-volume
