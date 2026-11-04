@@ -82,11 +82,11 @@ labels:
   
   mini_ui: 
     app: mini-ui
-    type: ui    
+    type: ui
 
   embedding:
-    app: gte-embed 
-    type: embedding-model    
+    app: gte-embed
+    type: embedding-model  
   
   feedback: 
     app: feedback
