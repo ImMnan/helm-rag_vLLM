@@ -47,6 +47,8 @@ spec:
           value: orca-feedback
         - name: KEYCLOAK_ISSUER
           value: "https://orca-infer.ai/auth/realms/orca"
+        - name: KEYCLOAK_JWKS_URL
+          value: "http://kc-keycloakx-http.hawk.svc.cluster.local/auth/realms/orca/protocol/openid-connect/certs"
         ports:
         - containerPort: {{ index .Values.services.mini_ui.ports 0 "targetPort" }}
           name: {{ index .Values.services.mini_ui.ports 0 "name" }}
